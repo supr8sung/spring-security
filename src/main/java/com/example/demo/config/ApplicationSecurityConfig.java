@@ -12,9 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.web.util.matcher.AndRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -61,7 +59,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID","remember-me")
+                .deleteCookies("JSESSIONID", "remember-me")
                 .logoutSuccessUrl("/login");
     }
 
@@ -87,6 +85,5 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                         .authorities(ADMINTRAINEE.getGrantedAuthorities())
                         .build();
         return new InMemoryUserDetailsManager(user, admin, adminTrainee);
-//        return new InMemoryUserDetailsManager(Arrays.asList(user, admin,adminTrainee));
     }
 }

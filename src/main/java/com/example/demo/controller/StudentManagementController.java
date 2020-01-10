@@ -39,7 +39,6 @@ public class StudentManagementController {
     public ResponseEntity<Void> register(Student student) {
 
         System.out.println(student);
-        // students.add(student);
         return ResponseEntity.status(CREATED).build();
     }
 
